@@ -1,0 +1,58 @@
+{
+  "errores": [
+    {
+      "No.": 1,
+      "descripcion": {
+        "lexema": "#",
+        "tipo": "error lexico",
+        "columna": 2,
+        "fila": 1
+    }
+    },
+    {
+      "No.": 2,
+      "descripcion": {
+        "lexema": "/",
+        "tipo": "error lexico",
+        "columna": 10,
+        "fila": 7
+    }
+    },
+    {
+      "No.": 3,
+      "descripcion": {
+        "lexema": "*",
+        "tipo": "error lexico",
+        "columna": 12,
+        "fila": 7
+    }
+    },
+    {
+      "No.": 4,
+      "descripcion": {
+        "lexema": "@",
+        "tipo": "error lexico",
+        "columna": 10,
+        "fila": 12
+    }
+    },
+    {
+      "No.": 5,
+      "descripcion": {
+        "lexema": "%",
+        "tipo": "error lexico",
+        "columna": 6,
+        "fila": 13
+    }
+    },
+    {
+      "No.": 6,
+      "descripcion": {
+        "lexema": "!",
+        "tipo": "error lexico",
+        "columna": 2,
+        "fila": 14
+    }
+    }
+  ]
+}

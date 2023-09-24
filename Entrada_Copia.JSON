@@ -1,0 +1,15 @@
+{
+    "operaciones": [
+        {
+            "operacion": "division",
+            "valor1": 6.66,
+            "valor2": [
+                {
+                    "operacion": "raiz",
+                    "valor1": 25,
+                    "valor2": 2
+                }
+            ]
+        }
+    ]
+}
