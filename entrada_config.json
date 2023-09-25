@@ -1,0 +1,22 @@
+{
+    "operaciones": [
+        {
+            "operacion": "resta",
+            "valor1": 6.5,
+            "valor2": 3.5
+        },
+        {
+            "operacion": "suma",
+            "valor1": 2.3,
+            "valor2": 5.32
+        }
+    ],
+    "configuraciones": [
+        {
+            "texto": "Realizacion de Operaciones",
+            "fondo": "amarillo",
+            "fuente": "negro",
+            "forma": "circulo"
+        }
+    ]
+}

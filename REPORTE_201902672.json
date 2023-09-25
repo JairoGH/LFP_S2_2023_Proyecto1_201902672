@@ -5,53 +5,116 @@
       "descripcion": {
         "lexema": "#",
         "tipo": "error lexico",
-        "columna": 2,
+        "columna": 6,
         "fila": 1
     }
     },
     {
       "No.": 2,
       "descripcion": {
-        "lexema": "/",
+        "lexema": "@",
         "tipo": "error lexico",
-        "columna": 10,
-        "fila": 7
+        "columna": 14,
+        "fila": 8
     }
     },
     {
       "No.": 3,
       "descripcion": {
-        "lexema": "*",
+        "lexema": "!",
         "tipo": "error lexico",
-        "columna": 12,
-        "fila": 7
+        "columna": 15,
+        "fila": 12
     }
     },
     {
       "No.": 4,
       "descripcion": {
-        "lexema": "@",
+        "lexema": "%",
         "tipo": "error lexico",
-        "columna": 10,
-        "fila": 12
+        "columna": 14,
+        "fila": 18
     }
     },
     {
       "No.": 5,
       "descripcion": {
-        "lexema": "%",
+        "lexema": "#",
         "tipo": "error lexico",
-        "columna": 6,
-        "fila": 13
+        "columna": 14,
+        "fila": 23
     }
     },
     {
       "No.": 6,
       "descripcion": {
-        "lexema": "!",
+        "lexema": "&",
         "tipo": "error lexico",
-        "columna": 2,
-        "fila": 14
+        "columna": 14,
+        "fila": 28
+    }
+    },
+    {
+      "No.": 7,
+      "descripcion": {
+        "lexema": "$",
+        "tipo": "error lexico",
+        "columna": 14,
+        "fila": 33
+    }
+    },
+    {
+      "No.": 8,
+      "descripcion": {
+        "lexema": "$",
+        "tipo": "error lexico",
+        "columna": 14,
+        "fila": 43
+    }
+    },
+    {
+      "No.": 9,
+      "descripcion": {
+        "lexema": "@",
+        "tipo": "error lexico",
+        "columna": 14,
+        "fila": 47
+    }
+    },
+    {
+      "No.": 10,
+      "descripcion": {
+        "lexema": "?",
+        "tipo": "error lexico",
+        "columna": 14,
+        "fila": 53
+    }
+    },
+    {
+      "No.": 11,
+      "descripcion": {
+        "lexema": "ï",
+        "tipo": "error lexico",
+        "columna": 14,
+        "fila": 58
+    }
+    },
+    {
+      "No.": 12,
+      "descripcion": {
+        "lexema": "¿",
+        "tipo": "error lexico",
+        "columna": 15,
+        "fila": 58
+    }
+    },
+    {
+      "No.": 13,
+      "descripcion": {
+        "lexema": "½",
+        "tipo": "error lexico",
+        "columna": 16,
+        "fila": 58
     }
     }
   ]

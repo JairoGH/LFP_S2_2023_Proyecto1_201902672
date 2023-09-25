@@ -1,4 +1,5 @@
 import math
+import os
 from Lexema import lexema
 from Errores import errores
 
@@ -7,8 +8,14 @@ class analizador():
     ltoken = []
     lerrores = []
     lista_tokens = []
+    lista_resultados = []
     no_linea = 1
     no_columna = 1
+
+    texto = ''
+    color = ''
+    forma = ''
+    fuente = ''
 
     def analizar_texto(self, texto):
         tk_lexema = ''
@@ -136,19 +143,19 @@ class analizador():
 
         while lista_tokens:
 
-            lexema = lista_tokens.pop(0)
+            token = lista_tokens.pop(0)
 
-            if lexema.lexema == 'operacion':
+            if token.lexema == 'operacion':
                 operaciones = lista_tokens.pop(0)
                 print(operaciones.lexema)
                 
-            elif lexema.lexema == 'valor1':
+            elif token.lexema == 'valor1':
                 n1 = lista_tokens.pop(0)
                 if n1.lexema == '[':  
                     n1 = self.operar(operaciones.lexema, n1.numero, 1)
                     print(n1)   
 
-            elif lexema.lexema == 'valor2':
+            elif token.lexema == 'valor2':
                 n2 = lista_tokens.pop(0)
                 if(n2.lexema == '['):
                     n2 = self.operar(operaciones.lexema, 1, n2.numero)
@@ -156,8 +163,25 @@ class analizador():
                 
                 if operaciones and n1 and n2:
                     Resultado = self.operar(operaciones.lexema, n1.numero, n2.numero)
+                    res = lexema(operaciones.lexema, n1.numero, n2.numero , 0,Resultado)
+                    self.lista_resultados.append(res)  
                     print(f"Resultado: {Resultado}")
-                
+
+            elif token.lexema == 'texto':
+                self.texto = lista_tokens.pop(0)
+                self.texto = self.texto.lexema
+
+            elif token.lexema == 'fondo':
+                self.color = lista_tokens.pop(0)
+                self.color = self.color.lexema               
+            elif token.lexema == 'fuente':
+                self.fuente = lista_tokens.pop(0)
+                self.fuente = self.fuente.lexema                   
+
+            elif token.lexema == 'forma':
+                self.forma = lista_tokens.pop(0)
+                self.forma = self.forma.lexema
+
         return None
 
     def reporte_errores(self):
@@ -205,4 +229,62 @@ class analizador():
             archivo.write(cont_json)
         print("Reporte Generado Correctamente!")
     
+
+    def graficar(self):
+        dot_string = 'digraph G {\n'
+        dot_string += self.to_dot()
+        dot_string += "}\n"
+
+        with open("REPORTE_201902672.dot", "w") as archivo:
+            archivo.write(dot_string)
+        os.system("dot -Tpng REPORTE_201902672.dot -o REPORTE_201902672.png")
+        print("¡Gráfica generada el Reporte!")
+
+    def to_dot(self):
+        dot_string = ''
+        dot_string += f'  {"titulo"} [label="Texto: {self.texto}",shape = {self.get_forma(self.forma)}, style = filled , fillcolor = {self.get_fondo_fuente(self.color)} , fontcolor = {self.get_fondo_fuente(self.fuente)}];\n'
+
+        for resultados in self.lista_resultados:
+            dot_string += f'  {resultados.lexema}_{str(resultados.no_linea).replace(".","_")}_{str(resultados.no_columna).replace(".","_")}_{str(resultados.total).replace(".","_")} [label=" Operacion: {resultados.lexema} Resultado: {resultados.total}",shape = {self.get_forma(self.forma)}, style = filled , fillcolor = {self.get_fondo_fuente(self.color)} , fontcolor = {self.get_fondo_fuente(self.fuente)}];\n'
+            dot_string += f'  {"valor1"}_{str(resultados.no_linea).replace(".","_")}_{str(resultados.no_columna).replace(".","_")}_{str(resultados.total).replace(".","_")} [label=" Valor1: {resultados.no_linea}",shape = {self.get_forma(self.forma)}, style = filled , fillcolor = {self.get_fondo_fuente(self.color)} , fontcolor = {self.get_fondo_fuente(self.fuente)}];\n'
+            dot_string += f'  {"valor2"}_{str(resultados.no_columna).replace(".","_")}_{str(resultados.no_linea).replace(".","_")}_{str(resultados.total).replace(".","_")} [label=" Valor2: {resultados.no_columna}" shape = {self.get_forma(self.forma)}, style = filled , fillcolor = {self.get_fondo_fuente(self.color)} , fontcolor = {self.get_fondo_fuente(self.fuente)} ];\n'
+            dot_string += f'  {resultados.lexema}_{str(resultados.no_linea).replace(".","_")}_{str(resultados.no_columna).replace(".","_")}_{str(resultados.total).replace(".","_")} -> {"valor1"}_{str(resultados.no_linea).replace(".","_")}_{str(resultados.no_columna).replace(".","_")}_{str(resultados.total).replace(".","_")};\n'
+            dot_string += f'  {resultados.lexema}_{str(resultados.no_linea).replace(".","_")}_{str(resultados.no_columna).replace(".","_")}_{str(resultados.total).replace(".","_")} -> {"valor2"}_{str(resultados.no_columna).replace(".","_")}_{str(resultados.no_linea).replace(".","_")}_{str(resultados.total).replace(".","_")};\n'
+        
+        return dot_string
+
+    def get_fondo_fuente(self, fondo):
+        
+        if (fondo == ('amarillo' or 'yellow')):
+            return 'yellow'
+        elif (fondo == ('azul' or 'blue')):
+            return 'blue'
+        elif (fondo == ('verde' or 'green')):
+            return 'green'
+        elif (fondo == ('rojo' or 'red')):
+            return 'red'
+        elif (fondo== ('morado' or 'purple')):
+            return 'purple'
+        elif (fondo == ('naranja' or 'orange')):
+            return 'orange'
+        elif (fondo == ('negro' or 'black')):
+            return 'black'
+        else:
+            return 'white'
+        
+    def get_forma(self, forma):
+
+
+        if (forma == ('circulo' or 'circle')):
+            return 'circle'
+        elif (forma == ('rectangulo' or 'box')):
+            return 'rectangle'
+        elif (forma == ('triangulo' or 'triangle')):
+            return 'triangle'
+        elif (forma == ('cuadrado' or 'square')):
+            return 'square'
+        elif (forma == ('elipse' or 'ellipse')):
+            return 'ellipse'
+        else:
+            return 'egg'
 

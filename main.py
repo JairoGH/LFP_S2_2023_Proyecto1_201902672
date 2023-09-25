@@ -7,6 +7,7 @@ from Analizador import analizador
 class app:
     content = ''
     current_file_path = ''
+    analizar = analizador()
 
     def __init__(self, root):
         self.root = root
@@ -25,7 +26,7 @@ class app:
         self.save_as_button = tk.Button(self.button_frame, text="Guardar Como", command=self.save_file)
         self.save_as_button.pack(side=tk.LEFT)
 
-        self.analyze_button = tk.Button(self.button_frame, text="Analizar", command=self.analizar)
+        self.analyze_button = tk.Button(self.button_frame, text="Analizar", command=self.analizar_archivo)
         self.analyze_button.pack(side=tk.LEFT)
 
         self.analyze_button = tk.Button(self.button_frame, text="Errores", command=self.errores)
@@ -55,6 +56,7 @@ class app:
                 self.text_widget.delete(1.0, tk.END)
                 self.text_widget.insert(tk.END, self.content)
             self.update_line_numbers()
+        self.data = self.text_widget.get(1.0, tk.END)
 
     def save_file_current(self):
         if self.current_file_path:
@@ -83,23 +85,33 @@ class app:
             self.line_number_bar.config(state=tk.DISABLED)
             self.current_line = line_count
 
-    def analizar(self):
-        print("Analizando...")
-        analizar = analizador()
-        analizar.analizar_texto(self.content) 
-        print("Analisis terminado")
-        analizar.operacion()
+    def analizar_archivo(self):
+        print("Analizando...")              
+        self.analizar.analizar_texto(self.content)
+        self.analizar.operacion()
+        result = self.analizar.lista_resultados
+        try:    
+            res = ''
+            op = 1
+
+            for l in result:
+                res += f"Operacion {op}: {l.lexema} = {l.total}\n"
+                print(f"lexema: {l.lexema}, valor1: {str(l.no_linea)}, valor2: {str(l.no_columna)}, total: {str(l.total)}")
+                op += 1
+            messagebox.showinfo("Mensaje:",res)              
+            
+        except:
+            messagebox.showinfo("Mensaje:","Error en el analisis...")
 
     def errores(self):
         print("Mostrando errores...")
-        analizar = analizador()
         messagebox.showinfo("Mensaje:","Reporte de Errores Generados...")
-        analizar.reporte_errores()
+        self.analizar.reporte_errores()
 
 
     def reporte(self):
         messagebox.showinfo("Mensaje:","Reporte Generado...")
-
+        self.analizar.graficar()
 
 if __name__ == "__main__":
     root = tk.Tk()

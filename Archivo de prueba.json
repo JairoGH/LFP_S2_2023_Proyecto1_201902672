@@ -1,0 +1,82 @@
+    {#
+        "operaciones": [
+            {
+                "operacion": "resta",
+                "valor1": 6.5,
+                "valor2": 3.5
+            },
+            {@
+                "operacion": "multiplicacion",
+                "valor1": 2.3,
+                "valor2": 5.32
+            },!
+            {
+                "operacion": "division",
+                "valor1": 7.8,
+                "valor2": 1.2
+            },
+            {%
+                "operacion": "suma",
+                "valor1": 4.5,
+                "valor2": 6.7
+            },
+            {#
+                "operacion": "resta",
+                "valor1": 9.6,
+                "valor2": 4.8
+            },
+            {&
+                "operacion": "suma",
+                "valor1": 1.11,
+                "valor2": 7.89
+            },
+            {$
+                "operacion": "resta",
+                "valor1": 10.5,
+                "valor2": 5.5
+            },
+            {
+                "operacion": "suma",
+                "valor1": 2.22,
+                "valor2": 8.88
+            },
+            {$
+                "operacion": "resta",
+                "valor1": 8.7,
+                "valor2": 2.3
+            }@,
+            {
+                "operacion": "potencia",
+                "valor1": 3,
+                "valor2": 10
+            },
+            {?
+                "operacion": "resta",
+                "valor1": 5.6,
+                "valor2": 0.9
+            },
+            {�
+                "operacion": "suma",
+                "valor1": 4.44,
+                "valor2": 7.77
+            },
+            {
+                "operacion": "resta",
+                "valor1": 3.4,
+                "valor2": 2.1
+            },
+            {
+                "operacion": "suma",
+                "valor1": 5.55,
+                "valor2": 6.66
+            }
+        ],
+        "configuraciones": [
+            {
+                "texto": "realizacion de operaciones",
+                "fondo": "morado",
+                "fuente": "negro",
+                "forma": "elipse"
+            }
+        ]
+    }
